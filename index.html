@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <main>
+    <div class="badge">v1.0.0</div>
+    <h1 class="title">
+      <span class="hello">Hello,</span>
+      <span class="world">World!</span>
+    </h1>
+    <p class="subtitle">Proyek pertama saya dimulai dari sini.</p>
+    <div class="console">
+      <div class="console-bar">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="console-label">console</span>
+      </div>
+      <pre class="console-body"><span class="prompt">$</span> node index.js
+<span class="output" id="output"></span><span class="cursor">▌</span></pre>
+    </div>
+    <button class="run-btn" onclick="runCode()">▶ Jalankan</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

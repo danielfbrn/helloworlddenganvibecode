@@ -1,0 +1,247 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0b0c0f;
+  --surface: #13151a;
+  --border: #2a2d36;
+  --accent: #e8ff5a;
+  --accent2: #5affb8;
+  --text: #f0f0ee;
+  --muted: #6b6f7a;
+  --red: #ff5f57;
+  --yellow: #febc2e;
+  --green: #28c840;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 48px;
+  max-width: 680px;
+  width: 100%;
+  margin: auto;
+  animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 4px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.1s both;
+}
+
+.title {
+  font-size: clamp(52px, 10vw, 88px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.hello {
+  display: block;
+  color: var(--muted);
+  opacity: 0;
+  animation: fadeUp 0.5s 0.2s both;
+}
+
+.world {
+  display: block;
+  color: var(--accent);
+  opacity: 0;
+  animation: fadeUp 0.5s 0.3s both;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-style: italic;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.4s both;
+  word-break: break-word;
+}
+
+.console {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.5s both;
+}
+
+.console-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #0f1116;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot.red    { background: var(--red); }
+.dot.yellow { background: var(--yellow); }
+.dot.green  { background: var(--green); }
+
+.console-label {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.console-body {
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
+  min-height: 80px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+.prompt { color: var(--accent2); margin-right: 8px; }
+.output { color: var(--text); }
+.cursor {
+  display: inline-block;
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.run-btn {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.15s, background 0.15s;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.6s both;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  max-width: 220px;
+}
+
+.run-btn:hover  { background: #f5ff80; transform: translateY(-2px); }
+.run-btn:active { transform: scale(0.97); }
+
+/* ── Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+  main {
+    padding: 28px 20px;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: clamp(40px, 13vw, 64px);
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .console-bar {
+    padding: 8px 12px;
+  }
+
+  .console-body {
+    padding: 14px;
+    font-size: 12px;
+  }
+
+  .run-btn {
+    max-width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+/* ── Tablet (481px – 768px) ── */
+@media (min-width: 481px) and (max-width: 768px) {
+  main {
+    padding: 36px 32px;
+    gap: 18px;
+  }
+
+  .title {
+    font-size: clamp(48px, 11vw, 72px);
+  }
+
+  .run-btn {
+    max-width: 200px;
+  }
+}
+
+/* ── Desktop (≥ 769px) ── */
+@media (min-width: 769px) {
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .console-body {
+    font-size: 14px;
+    padding: 20px;
+  }
+}
